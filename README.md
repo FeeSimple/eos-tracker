@@ -19,10 +19,10 @@ Config file of mongodb:
 
 Command to start mongod (MongoDB daemon):
 
-    ~/opt/mongodb/bin/mongod -f $MONGODB_DIR/mongod.conf &
+    ~/opt/mongodb/bin/mongod -f ~/opt/mongodb/mongod.conf &
 
 
-Or run the provided script "script_mongod.sh"
+Or run the provided script "script_mongod.sh" in the folder "eos_script"
 
 View log output of mongod:
 
