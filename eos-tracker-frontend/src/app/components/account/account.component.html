@@ -1,0 +1,143 @@
+<app-page>
+	<div id="page-wrapper">
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 class="page-header">{{ 'Account' | translate }} <span *ngIf="account">{{account.name}}</span></h1>
+			</div>
+			<!-- /.col-lg-12 -->
+		</div>
+
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						{{ 'Account' | translate }}
+					</div>
+					<!-- /.panel-heading -->
+					<div class="panel-body">
+						<app-loading *ngIf="!account"></app-loading>
+						<div *ngIf="account" class="table-responsive">
+							<table class="table table-striped">
+								<tr>
+									<td>{{ 'Name' | translate }}:</td>
+									<td>{{account.name}}</td>
+								</tr>
+								<tr>
+									<td>{{ 'Balance' | translate }}:</td>
+									<td>{{account.eos_balance}}</td>
+								</tr>
+								<tr>
+									<td>{{ 'Staked' | translate }}:</td>
+									<td>{{account.staked_balance}}</td>
+								</tr>
+								<tr>
+									<td>{{ 'Unstaked' | translate }}:</td>
+									<td>{{account.unstaking_balance}}</td>
+								</tr>
+
+								<tr>
+									<td>{{ 'CreatedAt' | translate }}:</td>
+									<td>{{account.createdAt.sec * 1000 | date:'medium'}}</td>
+								</tr>
+
+								<tr>
+									<td>{{ 'UpdatedAt' | translate }}:</td>
+									<td>{{account.updatedAt.sec * 1000 | date:'medium'}}</td>
+								</tr>
+
+								<tr *ngIf="account.abi">
+									<td colspan="2">
+										<prettyjson [obj]="account.abi"></prettyjson>
+									</td>
+								</tr>
+							</table>
+						</div>
+						<!-- /.table-responsive -->
+					</div>
+					<!-- /.panel-body -->
+				</div>
+				<!-- /.panel -->
+			</div>
+		</div>
+
+		<div class="panel-group" id="accordion">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" class="collapsed">{{ 'BlockchainRawData' | translate }}</a>
+					</h4>
+				</div>
+				<div id="collapseOne" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+					<div class="panel-body">
+						<prettyjson [obj]="accountRaw"></prettyjson>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="panel-group" id="accordion2" *ngIf="tables">
+
+			<div class="panel panel-default" *ngFor="let table of tables">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a data-toggle="collapse" data-parent="#accordion2" href="#{{table.name}}" aria-expanded="false" class="collapsed">{{ 'Table' | translate }} - {{table.name}}</a>
+					</h4>
+				</div>
+				<div id="{{table.name}}" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+					<div class="panel-body">
+						<div *ngFor="let row of table.rows">
+							<prettyjson [obj]="row"></prettyjson>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						{{ 'Transactions' | translate }}
+
+						<div class="pull-right">
+							<button *ngIf="page != 0" type="button" (click)="prevPage()" class="btn btn-outline btn-info btn-xs"><i class="fa fa-angle-left"> {{ 'Previous' | translate }}</i></button>
+							<button *ngIf="transactions && transactions.length == 30" type="button" (click)="nextPage()" class="btn btn-outline btn-info btn-xs">{{ 'Next' | translate }} <i class="fa fa-angle-right"></i></button>
+						</div>
+
+					</div>
+					<!-- /.panel-heading -->
+					<div class="panel-body">
+						<app-loading *ngIf="!transactions"></app-loading>
+						<div *ngIf="transactions" class="table-responsive">
+							<table class="table table-striped">
+								<thead>
+								<tr>
+									<th>#</th>
+									<th>{{ 'BlockId' | translate }}</th>
+									<th>{{ 'CreatedAt' | translate }}</th>
+									<th>{{ 'Actions' | translate }}</th>
+								</tr>
+								</thead>
+								<tbody>
+								<tr *ngFor="let transaction of transactions">
+									<td><a routerLink="/transactions/{{transaction.transaction_id}}">{{transaction.transaction_id|slice:0:32}}...</a></td>
+									<td><a routerLink="/search" [queryParams]="{q: transaction.block_id}">{{transaction.block_id |slice:0:32}}...</a></td>
+									<td>{{transaction.createdAt.sec * 1000 | date:'medium'}}</td>
+									<td>{{transaction.messages.length}}</td>
+								</tr>
+								</tbody>
+							</table>
+						</div>
+						<!-- /.table-responsive -->
+					</div>
+					<!-- /.panel-body -->
+				</div>
+				<!-- /.panel -->
+			</div>
+		</div>
+
+		<!-- /.row -->
+	</div>
+	<!-- /#page-wrapper -->
+</app-page>

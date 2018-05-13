@@ -1,0 +1,73 @@
+<app-page>
+	<div id="page-wrapper">
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 class="page-header">{{ 'Transaction' | translate }}</h1>
+			</div>
+			<!-- /.col-lg-12 -->
+		</div>
+
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						{{ 'Transaction' | translate }}
+					</div>
+					<!-- /.panel-heading -->
+					<div class="panel-body">
+						<app-loading *ngIf="!transaction"></app-loading>
+						<div *ngIf="transaction" class="table-responsive">
+							<table class="table table-striped">
+								<tr>
+									<td>{{ 'Id' | translate }}:</td>
+									<td>{{transaction.transaction_id}}</td>
+								</tr>
+								<tr>
+									<td>{{ 'Block' | translate }}:</td>
+									<td><a routerLink="/search" [queryParams]="{q: transaction.block_id}">{{transaction.block_id}}</a>
+									</td>
+								</tr>
+								<tr>
+									<td>{{ 'CreatedAt' | translate }}:</td>
+									<td>{{transaction.createdAt.sec * 1000 | date:'medium'}}</td>
+								</tr>
+								<tr>
+									<td>{{ 'Pending' | translate }}:</td>
+									<td>{{transaction.pending}}</td>
+								</tr>
+								<tr>
+									<td>{{ 'Status' | translate }}:</td>
+									<td>{{transaction.status}}</td>
+								</tr>
+								<tr>
+									<td>{{ 'Type' | translate }}:</td>
+									<td>{{transaction.type}}</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+					<!-- /.panel-body -->
+				</div>
+				<!-- /.panel -->
+			</div>
+		</div>
+
+		<div class="panel-group" id="accordion">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" class="collapsed">{{ 'BlockchainRawData' | translate }}</a>
+					</h4>
+				</div>
+				<div id="collapseOne" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+					<div class="panel-body">
+						<prettyjson [obj]="transactionRaw"></prettyjson>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- /.row -->
+	</div>
+	<!-- /#page-wrapper -->
+</app-page>

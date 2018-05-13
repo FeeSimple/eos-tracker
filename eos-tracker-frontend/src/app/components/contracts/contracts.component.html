@@ -1,0 +1,62 @@
+<app-page>
+  <div id="page-wrapper">
+    <div class="row">
+      <div class="col-lg-12">
+        <h1 class="page-header">{{ 'Actions' | translate }}</h1>
+      </div>
+      <!-- /.col-lg-12 -->
+    </div>
+
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            {{ 'Actions' | translate }}
+
+            <div class="pull-right">
+              <button *ngIf="page != 0" type="button" (click)="prevPage()" class="btn btn-outline btn-info btn-xs"><i class="fa fa-angle-left"> {{ 'Previous' | translate }}</i></button>
+              <button type="button" (click)="nextPage()" class="btn btn-outline btn-info btn-xs">{{ 'Next' | translate }} <i class="fa fa-angle-right"></i></button>
+            </div>
+
+          </div>
+          <!-- /.panel-heading -->
+          <div class="panel-body">
+            <app-loading *ngIf="!actions"></app-loading>
+            <div *ngIf="actions" class="table-responsive">
+              <table class="table table-striped">
+                <thead>
+                <tr>
+                  <th>{{ 'TransactionId' | translate }}</th>
+                  <th>{{ 'CreatedAt' | translate }}</th>
+                  <th>{{ 'Authorization' | translate }}</th>
+                  <th>{{ 'Handler' | translate }}</th>
+                  <th>{{ 'Name' | translate }}</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let action of actions">
+                  <td><a routerLink="/actions/{{action.action_id}}/{{action.transaction_id}}">{{action.transaction_id}}</a></td>
+                  <td>{{action.createdAt.sec * 1000 | date:'medium'}}</td>
+                  <td>
+                    <span *ngFor="let account of action.authorization">
+                          <a routerLink="/accounts/{{account.actor}}">{{account.actor}}</a>
+                    </span>
+                  </td>
+                  <td><a routerLink="/accounts/{{action.handler_account_name}}">{{action.handler_account_name}}</a></td>
+                  <td>{{action.name}}</td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+            <!-- /.table-responsive -->
+          </div>
+          <!-- /.panel-body -->
+        </div>
+        <!-- /.panel -->
+      </div>
+    </div>
+
+    <!-- /.row -->
+  </div>
+  <!-- /#page-wrapper -->
+</app-page>
