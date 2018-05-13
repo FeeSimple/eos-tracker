@@ -1,40 +1,45 @@
+# EOS tracker tool
+
 EOS tracker tool is made up of the following things:
 
 eos-tracker-frontend <--> eos-tracker-api <--> mongodb <--> nodeos
 
-1.
-Mongodb
+## Mongodb
 
 By default on Ubuntu, mongodb is compiled and built as plugin of nodeos.
 To determine if mongodb is supported by nodeos, run the following cmd and
 check if "--mongodb-uri" option available
 
-Installation dir of mongodb: ~/opt/mongodb
+Installation dir of mongodb:
+    ~/opt/mongodb
 
 Config file of mongodb:
+
     ~/opt/mongodb/mongod.conf
 
 Command to start mongod (MongoDB daemon):
+
     ~/opt/mongodb/bin/mongod -f $MONGODB_DIR/mongod.conf &
 
 
 Or run the provided script "script_mongod.sh"
 
 View log output of mongod:
+
     tail -f ~/opt/mongodb/log/mongodb.log
 
 By default, mongod is listenning at localhost:27017
 
 
-2.
+## nodeos
+
 Start nodeos (EOS daemon) with connection to mongodb named "EOStest"
 by running the following cmd in folder "eos_script":
 
     pm2 start script_nodeos_producer_mongo.sh
 
 
-3.
-eos-tracker-frontend
+## eos-tracker-frontend
 
 https://github.com/EOSEssentials/EOSTracker
 
@@ -42,8 +47,7 @@ EOS Tracker is a Frontend based on Angular4 that connects to EOS Tracker API.
 
 Just follow its README for installation and execution
 
-4.
-eos-tracker-api
+## eos-tracker-api
 
 https://github.com/EOSEssentials/EOSTracker-API
 
@@ -51,12 +55,14 @@ EOS Tracker API is a PHP Backend based on Symfony3 that connects to a MongoDB da
 
 First, install the below dependencies:
 
-PHP 7.2
+PHP 7.2:
+
     sudo add-apt-repository ppa:ondrej/php
     sudo apt-get update
     sudo apt-get install php7.2-cli
 
-Others
+Others:
+
     sudo apt-get install php-mongodb
     sudo apt-get install php7.2-cli
     sudo apt-get install php7.2-xml
