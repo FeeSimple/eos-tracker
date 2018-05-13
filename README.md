@@ -34,9 +34,9 @@ By default, mongod is listenning at localhost:27017
 ## nodeos
 
 Start nodeos (EOS daemon) with connection to mongodb named "EOStest"
-by running the following cmd in folder "eos_script":
+by running the following cmd:
 
-    pm2 start script_nodeos_producer_mongo.sh
+    pm2 start nodeos/script_nodeos_producer_mongo.sh
 
 
 ## eos-tracker-frontend
