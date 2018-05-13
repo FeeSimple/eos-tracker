@@ -2,7 +2,7 @@
 
 EOS tracker tool is made up of the following things:
 
-eos-tracker-frontend <--> eos-tracker-api <--> mongodb <--> nodeos
+    eos-tracker-frontend <--> eos-tracker-api <--> mongodb <--> nodeos
 
 ## Mongodb
 
