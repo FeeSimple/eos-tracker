@@ -30,26 +30,14 @@ View log output of mongod:
 
 By default, mongod is listenning at localhost:27017
 
-
 ## nodeos
 
 Start nodeos (EOS daemon) with connection to mongodb named "EOStest"
 by running the following cmd:
 
-    pm2 start nodeos/script_nodeos_producer_mongo.sh
+    cd nodeos
 
-
-## eos-tracker-frontend
-
-https://github.com/EOSEssentials/EOSTracker
-
-EOS Tracker is a Frontend based on Angular4 that connects to EOS Tracker API.
-
-Just follow its README for installation and execution
-
-Config file for IP:Port
-
-    protractor.conf.js
+    pm2 start script_nodeos_producer_mongo.sh
 
 ## eos-tracker-api
 
@@ -82,3 +70,16 @@ Config file of MongDB for eos-tracker-api
     secret: 123
     mongodb_server: 'mongodb://localhost:27017'
     db_name: EOStest
+
+
+## eos-tracker-frontend
+
+https://github.com/EOSEssentials/EOSTracker
+
+EOS Tracker is a Frontend based on Angular4 that connects to EOS Tracker API.
+
+Just follow its README for installation and execution
+
+To start the frontend at specific IP:Port
+
+    ng serve --host 0.0.0.0 --port 4200
