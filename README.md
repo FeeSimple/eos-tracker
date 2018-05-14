@@ -62,6 +62,10 @@ Others:
 
 Then, follows its README for "Installation" and "Usage"
 
+To start:
+
+    php bin/console server:run
+
 Config file of MongDB for eos-tracker-api
 
     app/config/parameters.yml
