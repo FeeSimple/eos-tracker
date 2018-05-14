@@ -47,6 +47,10 @@ EOS Tracker is a Frontend based on Angular4 that connects to EOS Tracker API.
 
 Just follow its README for installation and execution
 
+Config file for IP:Port
+
+    protractor.conf.js
+
 ## eos-tracker-api
 
 https://github.com/EOSEssentials/EOSTracker-API
@@ -69,3 +73,12 @@ Others:
     apt-get install composer
 
 Then, follows its README for "Installation" and "Usage"
+
+Config file of MongDB for eos-tracker-api
+
+    app/config/parameters.yml
+
+    # This file is auto-generated during the composer install parameters:
+    secret: 123
+    mongodb_server: 'mongodb://localhost:27017'
+    db_name: EOStest
