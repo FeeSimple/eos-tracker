@@ -61,6 +61,9 @@ class FrameworkBundle extends Bundle
 {
     public function boot()
     {
+        if (!ini_get('xdebug.file_link_format') && !get_cfg_var('xdebug.file_link_format')) {
+            ini_set('xdebug.file_link_format', $this->container->getParameter('debug.file_link_format'));
+        }
         ErrorHandler::register(null, false)->throwAt($this->container->getParameter('debug.error_handler.throw_at'), true);
 
         if ($this->container->hasParameter('kernel.trusted_proxies')) {
@@ -102,7 +105,7 @@ class FrameworkBundle extends Bundle
         $container->addCompilerPass((new RegisterListenersPass())->setHotPathEvents($hotPathEvents), PassConfig::TYPE_BEFORE_REMOVING);
         $container->addCompilerPass(new TemplatingPass());
         $this->addCompilerPassIfExists($container, AddConstraintValidatorsPass::class, PassConfig::TYPE_BEFORE_REMOVING);
-        $container->addCompilerPass(new AddAnnotationsCachedReaderPass(), PassConfig::TYPE_BEFORE_REMOVING);
+        $container->addCompilerPass(new AddAnnotationsCachedReaderPass(), PassConfig::TYPE_AFTER_REMOVING, -255);
         $this->addCompilerPassIfExists($container, AddValidatorInitializersPass::class);
         $this->addCompilerPassIfExists($container, AddConsoleCommandPass::class);
         if (class_exists(TranslatorPass::class)) {

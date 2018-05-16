@@ -120,7 +120,11 @@ trait RedisTrait
             $redis = new $class();
 
             $initializer = function ($redis) use ($connect, $params, $dsn, $auth) {
-                @$redis->{$connect}($params['host'], $params['port'], $params['timeout'], $params['persistent_id'], $params['retry_interval']);
+                try {
+                    @$redis->{$connect}($params['host'], $params['port'], $params['timeout'], $params['persistent_id'], $params['retry_interval']);
+                } catch (\RedisException $e) {
+                    throw new InvalidArgumentException(sprintf('Redis connection failed (%s): %s', $e->getMessage(), $dsn));
+                }
 
                 if (@!$redis->isConnected()) {
                     $e = ($e = error_get_last()) && preg_match('/^Redis::p?connect\(\): (.*)/', $e['message'], $e) ? sprintf(' (%s)', $e[1]) : '';
@@ -236,7 +240,7 @@ trait RedisTrait
             $cursor = null;
             do {
                 $keys = $host instanceof \Predis\Client ? $host->scan($cursor, 'MATCH', $namespace.'*', 'COUNT', 1000) : $host->scan($cursor, $namespace.'*', 1000);
-                if (isset($keys[1]) && is_array($keys[1])) {
+                if (isset($keys[1]) && \is_array($keys[1])) {
                     $cursor = $keys[0];
                     $keys = $keys[1];
                 }

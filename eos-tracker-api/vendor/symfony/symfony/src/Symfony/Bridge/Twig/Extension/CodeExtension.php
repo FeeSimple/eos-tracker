@@ -181,7 +181,9 @@ class CodeExtension extends AbstractExtension
             }
         }
 
-        $text = "$text at line $line";
+        if (0 < $line) {
+            $text .= ' at line '.$line;
+        }
 
         if (false !== $link = $this->getFileLink($file, $line)) {
             return sprintf('<a href="%s" title="Click to open this file" class="file_link">%s</a>', htmlspecialchars($link, ENT_COMPAT | ENT_SUBSTITUTE, $this->charset), $text);
@@ -259,6 +261,6 @@ class CodeExtension extends AbstractExtension
             $line .= '</span>';
         }
 
-        return $line;
+        return trim($line);
     }
 }
