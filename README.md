@@ -98,7 +98,7 @@ To start the frontend at specific IP:Port
 
 ## eos-tracker-api dependencies
 
-trungtt@trungtt-laptop:~/Work/reference/dyver/eos-tracker/eos-tracker-api$ composer install
+composer install
 Loading composer repositories with package information
 Updating dependencies (including require-dev)
 Package operations: 36 installs, 0 updates, 0 removals
