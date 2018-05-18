@@ -78,6 +78,10 @@ To start:
 
     php bin/console server:run
 
+Or run this cmd:
+
+    pm2 start script_run_api_server.sh
+
 
 ## eos-tracker-frontend
 
