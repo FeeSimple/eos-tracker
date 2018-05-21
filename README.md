@@ -37,7 +37,9 @@ by running the following cmd:
 
     cd nodeos
 
-    pm2 start own_nodeos_producer/script_nodeos_producer_mongo.sh
+    pm2 start client_node_connect_to_testnet_mongo/script_client_node_mongo.sh
+    or:
+    pm2 start single_eosio_producer_mongo/script_eosio_producer_mongo.sh
 
 ## eos-tracker-api
 
@@ -80,7 +82,7 @@ To start:
 
 Or run this cmd:
 
-    pm2 start script_run_api_server.sh
+    pm2 start script_tracker_api.sh
 
 
 ## eos-tracker-frontend
@@ -88,6 +90,19 @@ Or run this cmd:
 https://github.com/EOSEssentials/EOSTracker
 
 EOS Tracker is a Frontend based on Angular4 that connects to EOS Tracker API.
+
+Config file of eos-tracker-frontend for interacting with eos-tracker-api:
+
+    src/environments/environment.ts
+
+        export const environment = {
+            production: false,
+            walletUrl: '//walleteos.com',
+            appName: 'EOS Tracker',
+            logoUrl: '/assets/logo.png',
+            apiUrl: '//159.65.109.118:8000',
+            blockchainUrl: '//159.65.109.118:8877'
+        };
 
 Just follow its README for installation and execution
 
@@ -99,6 +114,9 @@ If not available, then install the following things:
 To start the frontend at specific IP:Port
 
     ng serve --host 0.0.0.0 --port 4200
+
+    or run the below cmd:
+    pm2 start script_run_frontend.sh
 
 ## eos-tracker-api dependencies
 
@@ -158,9 +176,3 @@ monolog/monolog suggests installing sentry/sentry (Allow sending log messages to
 symfony/phpunit-bridge suggests installing ext-zip (Zip support is required when using bin/simple-phpunit)
 Writing lock file
 Generating autoload files
-> Incenteev\ParameterHandler\ScriptHandler::buildParameters
-Creating the "app/config/parameters.yml" file
-Some parameters are missing. Please provide them.
-secret (ThisTokenIsNotSoSecretChangeIt): 123
-mongodb_server ('mongodb://eos:eos@youreos.io:27017/EOS'): 'mongodb://localhost:27017'
-db_name (EOS): EOStest
