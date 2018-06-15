@@ -18,7 +18,9 @@ Current build version:
 
 ## Start a client nodeos connected to the testnet
 
-Download the script together with config.ini and genesis.ini files
+Download the prepared script together with config.ini and genesis.ini files
+from:
+
 `https://github.com/FeeSimple/eos-tracker/tree/master/nodeos/client_node_connect_to_testnet`
 
 Run in background with pm2 tool: `pm2 start script_client_nodeos.sh`
