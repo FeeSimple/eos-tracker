@@ -30,6 +30,21 @@ View log output of mongod:
 
 By default, mongod is listenning at localhost:27017
 
+Interact with mongo database:
+Ref link: https://docs.mongodb.com/manual/reference/mongo-shell
+
+```
+    ~/opt/mongodb/bin/mongo
+    
+    show dbs    
+
+    use EOStest
+
+    show tables
+
+    db.transactions.count()
+```
+
 ## nodeos
 
 Start nodeos (EOS daemon) with connection to mongodb named "EOStest"
