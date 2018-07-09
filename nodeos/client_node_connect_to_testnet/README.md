@@ -2,7 +2,7 @@
 
 ## Testnet
 
-The running testnet (on server `159.65.109.118`) includes 10 block producers
+The running testnet (on server `138.197.194.220`) includes 4 block producers
 which are in turn producing blocks.
 
 Instruction for deploying testnet is described here:
@@ -14,7 +14,19 @@ Instruction is described here:
 `https://github.com/EOSIO/eos/wiki/Local-Environment#2-building-eosio`
 
 Current build version:
-`master branch at commit a97a49a0dd4f5051dc7de1de4bc654fedf49cadf`
+(Reference link: https://github.com/EOSIO/eos/pull/4304)
+
+
+```
+git clone -b release/1.1 https://github.com/EOSIO/eos.git
+cd eos
+git fetch --all --tags --prune && git merge --m “merge” -–commit origin/gh#3030-enable-mongodb
+git submodule update --init –-recursive
+./eosio_build.sh
+cd build
+make install
+```
+
 
 ## Start a client nodeos connected to the testnet
 
