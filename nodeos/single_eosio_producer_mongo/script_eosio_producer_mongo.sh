@@ -6,5 +6,7 @@ base_dir=~/nodeos_data
 config_dir=.
 data_dir=$base_dir/$name
 
-nodeos --config-dir $config_dir --data-dir $data_dir --resync-blockchain 
+mongo_opt='--delete-all-blocks --mongodb-wipe --abi-serializer-max-time-ms=1000'
+
+nodeos --config-dir $config_dir --data-dir $data_dir $mongo_opt 
   
