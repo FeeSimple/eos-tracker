@@ -19,8 +19,8 @@ class TransactionController extends Controller
     {
         $size = (int)$request->get('size', self::DEFAULT_SIZE);
         $filter = [];
-        if ($request->get('transaction_id')) {
-            $filter = ['transaction_id' => (string)$request->get('transaction_id')];
+        if ($request->get('trx_id')) {
+            $filter = ['trx_id' => (string)$request->get('trx_id')];
         }
         if ($request->get('scope')) {
             $filter = ['scope' => (string)$request->get('scope')];
@@ -31,7 +31,21 @@ class TransactionController extends Controller
         $items = [];
         $db = $this->get('eos_explorer.mongo_service');
 
-        $cursor = $db->get()->transactions
+        // $cursor = $db->get()->transactions
+        //     ->find($filter)
+        //     ->sort(['createdAt' => -1])
+        //     ->skip((int)$request->get('page', 0) * $size)
+        //     ->limit($size);
+
+        // foreach ($cursor as $key => $document) {
+        //     $items[] = $document;
+        // }
+
+        $filter = [];
+        if ($request->get('trx_id')) {
+            $filter = ['id' => (string)$request->get('trx_id')];
+        }
+        $cursor = $db->get()->transaction_traces
             ->find($filter)
             ->sort(['createdAt' => -1])
             ->skip((int)$request->get('page', 0) * $size)

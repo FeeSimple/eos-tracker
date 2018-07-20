@@ -29,8 +29,8 @@ class WalletController extends Controller
                     '$lookup' =>
                         [
                             'from' => 'Actions',
-                            'localField' => 'transaction_id',
-                            'foreignField' => 'transaction_id',
+                            'localField' => 'trx_id',
+                            'foreignField' => 'trx_id',
                             'as' => 'message',
                         ],
                 ]
@@ -72,8 +72,8 @@ class WalletController extends Controller
                     '$lookup' =>
                         [
                             'from' => 'Actions',
-                            'localField' => 'transaction_id',
-                            'foreignField' => 'transaction_id',
+                            'localField' => 'trx_id',
+                            'foreignField' => 'trx_id',
                             'as' => 'actions',
                         ],
                 ]

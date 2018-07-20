@@ -19,8 +19,8 @@ class ActionController extends Controller
         $db = $this->get('eos_explorer.mongo_service');
 
         $size = (int)$request->get('size', self::DEFAULT_SIZE);
-        $filter = ($request->get('transaction_id')) ? [
-            'transaction_id' => (string)$request->get('transaction_id'),
+        $filter = ($request->get('trx_id')) ? [
+            'trx_id' => (string)$request->get('trx_id'),
             'action_id' => (int)$request->get('action_id'),
         ] : [];
         $items = [];
