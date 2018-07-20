@@ -31,21 +31,7 @@ class TransactionController extends Controller
         $items = [];
         $db = $this->get('eos_explorer.mongo_service');
 
-        // $cursor = $db->get()->transactions
-        //     ->find($filter)
-        //     ->sort(['createdAt' => -1])
-        //     ->skip((int)$request->get('page', 0) * $size)
-        //     ->limit($size);
-
-        // foreach ($cursor as $key => $document) {
-        //     $items[] = $document;
-        // }
-
-        $filter = [];
-        if ($request->get('trx_id')) {
-            $filter = ['id' => (string)$request->get('trx_id')];
-        }
-        $cursor = $db->get()->transaction_traces
+        $cursor = $db->get()->transactions
             ->find($filter)
             ->sort(['createdAt' => -1])
             ->skip((int)$request->get('page', 0) * $size)
@@ -54,6 +40,20 @@ class TransactionController extends Controller
         foreach ($cursor as $key => $document) {
             $items[] = $document;
         }
+
+        // $filter = [];
+        // if ($request->get('trx_id')) {
+        //     $filter = ['id' => (string)$request->get('trx_id')];
+        // }
+        // $cursor = $db->get()->transaction_traces
+        //     ->find($filter)
+        //     ->sort(['createdAt' => -1])
+        //     ->skip((int)$request->get('page', 0) * $size)
+        //     ->limit($size);
+
+        // foreach ($cursor as $key => $document) {
+        //     $items[] = $document;
+        // }
 
         return new JsonResponse($items);
     }
