@@ -2,3 +2,5 @@ eos-tracker-api/vendor/
 node_modules/
 nodeos/client_node_connect_to_testnet_mongo/blocks/
 nodeos/client_node_connect_to_testnet_mongo/state/
+eos-tracker-api/composer.lock
+eos-tracker-frontend/package-lock.json
