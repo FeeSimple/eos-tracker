@@ -35,7 +35,7 @@ Ref link: https://docs.mongodb.com/manual/reference/mongo-shell
 
 ```
     ~/opt/mongodb/bin/mongo
-    
+
     show dbs    
 
     use EOStest
@@ -64,20 +64,31 @@ EOS Tracker API is a PHP Backend based on Symfony3 that connects to a MongoDB da
 
 First, install the below dependencies:
 
-PHP 7.2:
+Install PHP 7.2 (Ubuntu)
 
     sudo add-apt-repository ppa:ondrej/php
     sudo apt-get update
     sudo apt-get install php7.2
 
-Others:
+Install others (Ubuntu)
 
-    sudo apt-get install php-mongodb
+    sudo apt-get install php7.2-mongodb
     sudo apt-get install php7.2-cli
     sudo apt-get install php7.2-xml
+    sudo apt-get install php7.2-mbstring php7.2-intl php7.2-redis -y
     apt-get install composer
 
-Then, follows its README for "Installation" and "Usage"
+Install PHP 7.2 (Mac)
+
+    brew install php72
+
+Install others (Mac)
+
+    // http://php.net/manual/en/mongodb.installation.pecl.php
+    sudo pecl install mongodb
+
+
+Run composer cmd
 
     composer update
     composer install
@@ -115,16 +126,15 @@ Config file of eos-tracker-frontend for interacting with eos-tracker-api:
             walletUrl: '//walleteos.com',
             appName: 'EOS Tracker',
             logoUrl: '/assets/logo.png',
-            apiUrl: '//159.65.109.118:8000',
-            blockchainUrl: '//159.65.109.118:8877'
+            apiUrl: '//138.197.194.220:8000',
+            blockchainUrl: '//138.197.194.220:8877'
         };
 
 Just follow its README for installation and execution
 
 If not available, then install the following things:
 
-    npm install -g @angular/cli
-    npm install -g npm
+    sudo npm install -g @angular/cli@latest
 
 To start the frontend at specific IP:Port
 

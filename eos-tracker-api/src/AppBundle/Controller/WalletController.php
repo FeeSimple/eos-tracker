@@ -23,7 +23,7 @@ class WalletController extends Controller
         $scope = $request->get('scope');
         $handler = $request->get('handler');
         $items = [];
-        $cursor = $db->get()->Transactions
+        $cursor = $db->get()->transactions
             ->aggregate([
                 [
                     '$lookup' =>
@@ -66,7 +66,7 @@ class WalletController extends Controller
 
         $scope = $request->get('scope');
         $items = [];
-        $cursor = $db->get()->Transactions
+        $cursor = $db->get()->transactions
             ->aggregate([
                 [
                     '$lookup' =>

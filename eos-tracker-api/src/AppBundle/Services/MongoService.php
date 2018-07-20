@@ -10,6 +10,8 @@ class MongoService
     {
         $mongo = new \MongoClient($server);
         $this->mongo = $mongo->selectDB($dbName);
+
+        error_log("MongoService - server: " . $server . ", dbName: " . $dbName);
     }
 
     public function get()

@@ -22,13 +22,13 @@ class ProducerController extends Controller
 
         $items = $cache->get()->get('producers.action');
         if (!$items) {
-            $cursor = $db->get()->Blocks->aggregate([
+            $cursor = $db->get()->blocks->aggregate([
                 ['$group' => ["_id" => '$producer_account_id', "count" => ['$sum' => 1]]],
                 ['$sort' => ['count' => -1]],
             ], ["cursor" => [ "batchSize" => 0 ]]);
 
             foreach ($cursor['result'] as $key => $document) {
-                $account = $db->get()->Accounts->findOne(['name' => $document['_id']]);
+                $account = $db->get()->accounts->findOne(['name' => $document['_id']]);
                 $items[$key] = $account;
                 $items[$key]['count'] = $document['count'];
             }

@@ -20,11 +20,11 @@
 							<table class="table table-striped">
 								<tr>
 									<td>{{ 'Id' | translate }}:</td>
-									<td>{{transaction.transaction_id}}</td>
+									<td>{{transaction.trx_id}}</td>
 								</tr>
 								<tr>
 									<td>{{ 'Block' | translate }}:</td>
-									<td><a routerLink="/search" [queryParams]="{q: transaction.block_id}">{{transaction.block_id}}</a>
+									<td><a routerLink="/search" [queryParams]="{q: transaction.transaction_header.ref_block_num}">{{transaction.transaction_header.ref_block_num}}</a>
 									</td>
 								</tr>
 								<tr>
@@ -36,12 +36,12 @@
 									<td>{{transaction.pending}}</td>
 								</tr>
 								<tr>
-									<td>{{ 'Status' | translate }}:</td>
-									<td>{{transaction.status}}</td>
+									<td>{{ 'Expiration' | translate }}:</td>
+									<td>{{transaction.transaction_header.expiration}}</td>
 								</tr>
 								<tr>
-									<td>{{ 'Type' | translate }}:</td>
-									<td>{{transaction.type}}</td>
+									<td>{{ 'Actions' | translate }}:</td>
+									<td>{{transaction.actions.length}}</td>
 								</tr>
 							</table>
 						</div>

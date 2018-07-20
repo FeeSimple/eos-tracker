@@ -29,17 +29,17 @@
 									<th>#</th>
 									<th>{{ 'BlockId' | translate }}</th>
 									<th>{{ 'CreatedAt' | translate }}</th>
-									<th>{{ 'Status' | translate }}</th>
-									<th>{{ 'Type' | translate }}</th>
+									<th>{{ 'Expiration' | translate }}</th>
+									<th>{{ 'Actions' | translate }}</th>
 								</tr>
 								</thead>
 								<tbody>
 								<tr *ngFor="let transaction of transactions">
-									<td><a routerLink="/transactions/{{transaction.transaction_id}}">{{transaction.transaction_id|slice:0:32}}...</a></td>
-									<td><a routerLink="/search" [queryParams]="{q: transaction.block_id}">{{transaction.block_id |slice:0:32}}...</a></td>
+									<td><a routerLink="/transactions/{{transaction.trx_id}}">{{transaction.trx_id|slice:0:32}}...</a></td>
+									<td><a routerLink="/search" [queryParams]="{q: transaction.transaction_header.ref_block_num}">{{transaction.transaction_header.ref_block_num}}...</a></td>
 									<td>{{transaction.createdAt.sec * 1000 | date:'medium'}}</td>
-									<td>{{transaction.status}}</td>
-									<td>{{transaction.type}}</td>
+									<td>{{transaction.transaction_header.expiration}}</td>
+									<td>{{transaction.actions.length}}</td>
 								</tr>
 								</tbody>
 							</table>

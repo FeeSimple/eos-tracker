@@ -22,7 +22,7 @@ class BlockController extends Controller
 
         $db = $this->get('eos_explorer.mongo_service');
 
-        $cursor = $db->get()->Blocks
+        $cursor = $db->get()->blocks
             ->find($filter)
             ->sort(['block_num' => -1])
             ->skip((int)$request->get('page', 0) * $size)

@@ -24,11 +24,11 @@
 								</tr>
 								<tr>
 									<td>{{ 'Producer' | translate }}:</td>
-									<td><a routerLink="/accounts/{{block.producer_account_id}}">{{block.producer_account_id}}</a></td>
+									<td><a routerLink="/accounts/{{block.block.producer}}">{{block.block.producer}}</a></td>
 								</tr>
 								<tr>
 									<td>{{ 'Timestamp' | translate }}:</td>
-									<td>{{block.timestamp.sec * 1000 | date:'medium'}}</td>
+									<td>{{block.createdAt.sec * 1000 | date:'medium'}}</td>
 								</tr>
 								<tr>
 									<td>{{ 'BlockId' | translate }}:</td>
@@ -94,8 +94,8 @@
 								</thead>
 								<tbody>
 								<tr *ngFor="let transaction of transactions">
-									<td><a routerLink="/transactions/{{transaction.transaction_id}}">{{transaction.transaction_id|slice:0:32}}...</a></td>
-									<td><a routerLink="/search" [queryParams]="{q: transaction.block_id}">{{transaction.block_id |slice:0:32}}...</a></td>
+									<td><a routerLink="/transactions/{{transaction.trx_id}}">{{transaction.trx_id|slice:0:32}}...</a></td>
+									<td><a routerLink="/search" [queryParams]="{q: transaction.transaction_header.ref_block_num}">{{transaction.transaction_header.ref_block_num}}...</a></td>
 									<td>{{transaction.createdAt.sec * 1000 | date:'medium'}}</td>
 									<td>{{transaction.messages.length}}</td>
 								</tr>

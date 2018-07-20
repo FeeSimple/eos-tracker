@@ -22,10 +22,10 @@ class DefaultController extends Controller
         $result = $cache->get()->get('stats.action');
         if (!$result) {
             $result = [
-                $db->get()->Blocks->count(),
-                $db->get()->Transactions->count(),
-                $db->get()->Accounts->count(),
-                $db->get()->Messages->count(),
+                $db->get()->blocks->count(),
+                $db->get()->transactions->count(),
+                $db->get()->accounts->count(),
+                $db->get()->actions->count(),
             ];
             $cache->get()->set('stats.action', $result, $cache::DEFAULT_CACHING);
         }
@@ -45,7 +45,7 @@ class DefaultController extends Controller
 
         $result = $cache->get()->get('search.action.'.$query);
         if (!$result) {
-            $result = $db->get()->Blocks->findOne(['block_id' => $query]);
+            $result = $db->get()->blocks->findOne(['block_id' => $query]);
 
             $cache->get()->set('search.action.'.$query, $result, 300);
         }

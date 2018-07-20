@@ -21,7 +21,7 @@ class AccountController extends Controller
         $size = (int)$request->get('size', self::DEFAULT_SIZE);
         $filter = ($request->get('name')) ? ['name' => (string)$request->get('name')] : [];
         $items = [];
-        $cursor = $db->get()->Accounts
+        $cursor = $db->get()->accounts
             ->find($filter)
             ->sort(['createdAt' => -1])
             ->skip((int)$request->get('page', 0) * $size)
@@ -43,7 +43,7 @@ class AccountController extends Controller
 
         $size = (int)$request->get('size', self::DEFAULT_SIZE);
         $items = [];
-        $cursor = $db->get()->Accounts
+        $cursor = $db->get()->accounts
             ->find(['name' => ['$regex' => $request->get('name')]], ['name' => 1, '_id' => 0])
             ->skip((int)$request->get('page', 0) * $size)
             ->limit($size);

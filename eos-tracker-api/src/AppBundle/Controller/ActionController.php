@@ -24,7 +24,7 @@ class ActionController extends Controller
             'action_id' => (int)$request->get('action_id'),
         ] : [];
         $items = [];
-        $cursor = $db->get()->Actions
+        $cursor = $db->get()->actions
             ->find($filter)
             ->sort(['createdAt' => -1])
             ->skip((int)$request->get('page', 0) * $size)

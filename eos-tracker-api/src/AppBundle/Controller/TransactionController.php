@@ -31,7 +31,7 @@ class TransactionController extends Controller
         $items = [];
         $db = $this->get('eos_explorer.mongo_service');
 
-        $cursor = $db->get()->Transactions
+        $cursor = $db->get()->transactions
             ->find($filter)
             ->sort(['createdAt' => -1])
             ->skip((int)$request->get('page', 0) * $size)

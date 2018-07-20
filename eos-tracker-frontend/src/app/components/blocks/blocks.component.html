@@ -35,9 +35,9 @@
 								<tbody>
 								<tr *ngFor="let block of blocks">
 									<td><a routerLink="/blocks/{{block.block_num}}">{{block.block_num}}</a></td>
-									<td>{{block.timestamp.sec * 1000 | date:'medium'}}</td>
-									<td>{{block.pending}}</td>
-									<td><a routerLink="/accounts/{{block.producer_account_id}}">{{block.producer_account_id}}</a></td>
+									<td>{{block.createdAt.sec * 1000 | date:'medium'}}</td>
+									<td>{{block.block.confirmed}}</td>
+									<td><a routerLink="/accounts/{{block.block.producer}}">{{block.block.producer}}</a></td>
 								</tr>
 								</tbody>
 							</table>
