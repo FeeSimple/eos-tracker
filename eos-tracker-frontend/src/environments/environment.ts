@@ -5,7 +5,7 @@
 
 export const environment = {
   production: false,
-  walletUrl: '//walleteos.com',
+  walletUrl: '//138.197.194.220:3000',
   appName: 'EOS Tracker',
   logoUrl: '/assets/logo.png',
   apiUrl: '//localhost:8000',
