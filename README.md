@@ -1,14 +1,14 @@
 # EOS tracker tool
 
-EOS tracker tool is made up of the following things:
+EOS tracker tool is composed of the following:
 
     eos-tracker-frontend <--> eos-tracker-api <--> mongodb <--> nodeos
 
 ## Mongodb
 
-By default on Ubuntu, mongodb is compiled and built as plugin of nodeos.
+By default on Ubuntu, mongodb is compiled and built as a plugin of nodeos.
 To determine if mongodb is supported by nodeos, run the following cmd and
-check if "--mongodb-uri" option available
+check if the "--mongodb-uri" option is available
 
 Installation dir of mongodb:
     ~/opt/mongodb
@@ -22,7 +22,7 @@ Command to start mongod (MongoDB daemon):
     ~/opt/mongodb/bin/mongod -f ~/opt/mongodb/mongod.conf &
 
 
-Or run the provided script "script_mongod.sh" in the folder "mongo"
+Or, run the provided script "script_mongod.sh" in the folder "mongo"
 
 View log output of mongod:
 
@@ -47,8 +47,7 @@ Ref link: https://docs.mongodb.com/manual/reference/mongo-shell
 
 ## nodeos
 
-Start nodeos (EOS daemon) with connection to mongodb named "EOStest"
-by running the following cmd:
+Start nodeos (EOS daemon) with a connection to mongodb named "EOStest" by running the following cmd:
 
     cd nodeos
 
@@ -106,7 +105,7 @@ To start:
 
     php bin/console server:run
 
-Or run this cmd:
+Or, run this cmd:
 
     pm2 start script_tracker_api.sh
 
@@ -115,7 +114,7 @@ Or run this cmd:
 
 https://github.com/EOSEssentials/EOSTracker
 
-EOS Tracker is a Frontend based on Angular4 that connects to EOS Tracker API.
+EOS Tracker is a Frontend based on Angular4 that connects to the EOS Tracker API.
 
 Config file of eos-tracker-frontend for interacting with eos-tracker-api:
 
@@ -130,13 +129,13 @@ Config file of eos-tracker-frontend for interacting with eos-tracker-api:
             blockchainUrl: '//138.197.194.220:8877'
         };
 
-Just follow its README for installation and execution
+Just follow the README for installation and execution.
 
-If not available, then install the following things:
+If not available, then install the following:
 
     sudo npm install -g @angular/cli@latest
 
-To start the frontend at specific IP:Port
+To start the frontend at a specific IP:Port
 
     ng serve --host 0.0.0.0 --port 4200
 
